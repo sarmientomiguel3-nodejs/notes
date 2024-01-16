@@ -1,0 +1,10 @@
+const express = require('express');
+const restAPI = require('./routes');
+const {logErrors, errorHandler, boomErrorHandler} = require('./middlewares/error.handler');
+const app = express();
+app.use(express.json());
+restAPI(app);
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
+app.listen(3000);
